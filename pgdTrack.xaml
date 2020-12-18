@@ -7,9 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="100" d:DesignWidth="800"
       Title="pgdTrack">
-      
     <Grid>
-        <Button Name="Play" Content="0" HorizontalAlignment="Left" Padding="5,5,5,5" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Name="Play" Content="Play" HorizontalAlignment="Left" Padding="5,5,5,5" VerticalAlignment="Top" Click="Button_Click"/>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>

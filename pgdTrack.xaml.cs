@@ -14,28 +14,20 @@ using System.Windows.Shapes;
 
 namespace SoundMaschine
 {
-    /// <summary>
-    /// Interaktionslogik für pgdTrack.xaml
-    /// </summary>
-    public class TrackButton : Button
-    {
-        public int id;
-        public int delay;
-        public MediaPlayer sound;
-
-        public TrackButton(int id, int delay, MediaPlayer sound)
-        {
-            this.id = id;
-            this.delay = delay;
-            this.sound = sound;
-        }
-    }
     public partial class pgdTrack : Page
     {
         public List<TrackButton> Track = new List<TrackButton>();
         public pgdTrack()
         {
             InitializeComponent();
+
+            Grid contentGrid = Content as Grid;
+            ColumnDefinition tempColumn;
+            for (int i = 0; i < 50; i++)
+            {
+                tempColumn = new ColumnDefinition();
+                contentGrid.ColumnDefinitions.Add(tempColumn);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -58,7 +50,7 @@ namespace SoundMaschine
                     aTrack[i].Background = Brushes.Green;
                     await wait(1000);
                     aTrack[i].sound.Stop();
-                aTrack[i].Background = Brushes.LightGray;
+                    aTrack[i].Background = Brushes.LightGray;
                 }
                 
                 stillWorking = false;

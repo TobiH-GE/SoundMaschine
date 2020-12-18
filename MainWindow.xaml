@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoundMaschine"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="SoundMaschine by TobiH - use left mouseb on pad play/add and right mouseb on pad to stop sound" Height="800" Width="1280">
+    <Window.Resources>
+        <Style x:Key="TrackButtons" TargetType="Button">
+            <Setter Property="Padding" Value="2,2,2,2" />
+            <Setter Property="Height" Value="20" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="500"></RowDefinition>
@@ -36,6 +42,6 @@
             <Button Name="btn7" Width="100" Height="100" Grid.Column="1" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
             <Button Name="btn8" Width="100" Height="100" Grid.Column="2" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
         </Grid>
-        <Frame Name="fraTrack" Content="pgdTrack.xaml" Grid.Column="1" Grid.Row="1"/>
+        <Frame Name="fraTrack" Content="" Grid.Column="1" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -85,11 +85,13 @@ namespace SoundMaschine
 
             //pgdTrack.Track.Add(new TrackButton(0, 1000, Sounds[getPadID(sender)]));
 
-            var temp = new TrackButton(0, 1000, Sounds[getPadID(sender)]);
+            var tempButton = new TrackButton(0, 1000, Sounds[getPadID(sender)]);
+            tempButton.Style = FindResource("TrackButtons") as Style;
+            tempButton.Content = getPadID(sender);
             Grid contentGrid = pgdTrack.Content as Grid;
-            Grid.SetColumn(temp, contentGrid.Children.Count);
-            contentGrid.Children.Add(temp);
-            pgdTrack.Track.Add(temp);
+            Grid.SetColumn(tempButton, contentGrid.Children.Count);
+            contentGrid.Children.Add(tempButton);
+            pgdTrack.Track.Add(tempButton);
         }
 
         private void btn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
@@ -109,6 +111,8 @@ namespace SoundMaschine
             this.button = button;
             this.id = id;
             this.sound = sound;
+
+            button.Content = id;
             sound.MediaEnded += (o, e) => button.Background = Brushes.LightGray;
         }
     }
