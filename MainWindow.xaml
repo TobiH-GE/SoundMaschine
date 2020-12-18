@@ -1,0 +1,41 @@
+﻿<Window x:Class="SoundMaschine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SoundMaschine"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="500"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="btn0" Width="100" Height="100" Grid.Column="0" Grid.Row="0" Content="Sound 0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn1" Width="100" Height="100" Grid.Column="1" Grid.Row="0" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn2" Width="100" Height="100" Grid.Column="2" Grid.Row="0" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn3" Width="100" Height="100" Grid.Column="0" Grid.Row="1" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn4" Width="100" Height="100" Grid.Column="1" Grid.Row="1" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn5" Width="100" Height="100" Grid.Column="2" Grid.Row="1" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn6" Width="100" Height="100" Grid.Column="0" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn7" Width="100" Height="100" Grid.Column="1" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+            <Button Name="btn8" Width="100" Height="100" Grid.Column="2" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
+        </Grid>
+        <Frame Name="fraTrack" Content="pgdTrack.xaml" Grid.Column="1" Grid.Row="1"/>
+    </Grid>
+</Window>
