@@ -23,6 +23,7 @@ namespace SoundMaschine
     {
         MediaPlayer[] Sounds = new MediaPlayer[9];
         Pad[] Pads = new Pad[9];
+        pgdTrack pgdTrack = new pgdTrack();
 
         public List<List<MediaPlayer>> Tracks = new List<List<MediaPlayer>>();
 
@@ -55,21 +56,8 @@ namespace SoundMaschine
             Pads[7] = new Pad(btn7, 7, Sounds[7]);
             Pads[8] = new Pad(btn8, 8, Sounds[8]);
 
-            pgdTrack pgdTrackObj = new pgdTrack();
-
-            pgdTrackObj.Track.Add(Sounds[2]);
-            pgdTrackObj.Track.Add(Sounds[1]);
-            pgdTrackObj.Track.Add(Sounds[7]);
-            pgdTrackObj.Track.Add(Sounds[8]);
-            pgdTrackObj.Track.Add(Sounds[2]);
-            pgdTrackObj.Track.Add(Sounds[3]);
-            pgdTrackObj.Track.Add(Sounds[8]);
-            pgdTrackObj.Track.Add(Sounds[4]);
-            pgdTrackObj.Track.Add(Sounds[3]);
-            pgdTrackObj.Track.Add(Sounds[1]);
-            pgdTrackObj.Track.Add(Sounds[2]);
-
-            fraTrack.Content = pgdTrackObj;
+            fraTrack.Content = pgdTrack;
+            
         }
 
         private int getPadID(object sender) //TODO: optimize
@@ -91,14 +79,23 @@ namespace SoundMaschine
         }
         private void btn_Click(object sender, RoutedEventArgs e)
         {
+            Pads[getPadID(sender)].button.Background = Brushes.Green;
             Pads[getPadID(sender)].sound.Position = TimeSpan.Zero;
             Pads[getPadID(sender)].sound.Play();
+
+            //pgdTrack.Track.Add(new TrackButton(0, 1000, Sounds[getPadID(sender)]));
+
+            var temp = new TrackButton(0, 1000, Sounds[getPadID(sender)]);
+            Grid contentGrid = pgdTrack.Content as Grid;
+            Grid.SetColumn(temp, contentGrid.Children.Count);
+            contentGrid.Children.Add(temp);
+            pgdTrack.Track.Add(temp);
         }
 
         private void btn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             Pads[getPadID(sender)].sound.Stop();
-            Pads[getPadID(sender)].button.Background = Brushes.Blue;
+            Pads[getPadID(sender)].button.Background = Brushes.LightGray;
         }
     }
 
@@ -112,7 +109,7 @@ namespace SoundMaschine
             this.button = button;
             this.id = id;
             this.sound = sound;
-            sound.MediaEnded += (o, e) => button.Background = Brushes.Blue;
+            sound.MediaEnded += (o, e) => button.Background = Brushes.LightGray;
         }
     }
 }

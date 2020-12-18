@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +17,22 @@ namespace SoundMaschine
     /// <summary>
     /// Interaktionslogik für pgdTrack.xaml
     /// </summary>
+    public class TrackButton : Button
+    {
+        public int id;
+        public int delay;
+        public MediaPlayer sound;
+
+        public TrackButton(int id, int delay, MediaPlayer sound)
+        {
+            this.id = id;
+            this.delay = delay;
+            this.sound = sound;
+        }
+    }
     public partial class pgdTrack : Page
     {
-        public List<MediaPlayer> Track = new List<MediaPlayer>();
+        public List<TrackButton> Track = new List<TrackButton>();
         public pgdTrack()
         {
             InitializeComponent();
@@ -26,19 +40,34 @@ namespace SoundMaschine
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime timeStart;
-            
-            for (int i = 0; i < Track.Count; i++)
+            PlayTrack(Track);
+        }
+
+        async void PlayTrack(List<TrackButton> aTrack)
+        {
+            bool stillWorking = true;
+
+            //aTextbox.Text = $"sounds: {aTrack.Count}";
+
+            while (stillWorking)
             {
-                timeStart = DateTime.Now;
-                Track[i].Play();
-
-                while ((DateTime.Now - timeStart).TotalMilliseconds < 2000)
+                
+                for (int i = 0; i < aTrack.Count; i++)
                 {
-
+                    aTrack[i].sound.Play();
+                    aTrack[i].Background = Brushes.Green;
+                    await wait(1000);
+                    aTrack[i].sound.Stop();
+                aTrack[i].Background = Brushes.LightGray;
                 }
-                Track[i].Stop();
+                
+                stillWorking = false;
             }
+        }
+
+        private async Task wait(int ms)
+        {
+            await Task.Delay(ms);
         }
     }
 }
