@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -31,37 +32,16 @@ namespace SoundMaschine
         {
             InitializeComponent();
 
-            Sounds[0] = new MediaPlayer(); Sounds[0].Open(new Uri("./Sounds/Bass/Bass-Atmozzz.wav", UriKind.Relative));
-            Sounds[1] = new MediaPlayer(); Sounds[1].Open(new Uri("./Sounds/Bass/Bass-Beanbass.wav", UriKind.Relative));
-            Sounds[2] = new MediaPlayer(); Sounds[2].Open(new Uri("./Sounds/Bass/Bass-Knispy.wav", UriKind.Relative));
-            Sounds[3] = new MediaPlayer(); Sounds[3].Open(new Uri("./Sounds/Bass/bass-Lavabass 1.wav", UriKind.Relative));
-            Sounds[4] = new MediaPlayer(); Sounds[4].Open(new Uri("./Sounds/Bass/bass-Moerasbas 1.wav", UriKind.Relative));
-            Sounds[5] = new MediaPlayer(); Sounds[5].Open(new Uri("./Sounds/Bass/bass-Zandwezen 1.wav", UriKind.Relative));
-            Sounds[6] = new MediaPlayer(); Sounds[6].Open(new Uri("./Sounds/Bass/bass-Magmabass 1.wav", UriKind.Relative));
-            Sounds[7] = new MediaPlayer(); Sounds[7].Open(new Uri("./Sounds/Pad/Pad-Fefifish.wav", UriKind.Relative));
-            Sounds[8] = new MediaPlayer(); Sounds[8].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
-            Sounds[9] = new MediaPlayer(); Sounds[9].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
+            string[] soundFiles = Directory.GetFiles(@"./Sounds/", "*.wav", SearchOption.AllDirectories);
 
-            Sounds[10] = new MediaPlayer(); Sounds[10].Open(new Uri("./Sounds/Bass/Bass-Atmozzz.wav", UriKind.Relative));
-            Sounds[11] = new MediaPlayer(); Sounds[11].Open(new Uri("./Sounds/Bass/Bass-Beanbass.wav", UriKind.Relative));
-            Sounds[12] = new MediaPlayer(); Sounds[12].Open(new Uri("./Sounds/Bass/Bass-Knispy.wav", UriKind.Relative));
-            Sounds[13] = new MediaPlayer(); Sounds[13].Open(new Uri("./Sounds/Bass/bass-Lavabass 1.wav", UriKind.Relative));
-            Sounds[14] = new MediaPlayer(); Sounds[14].Open(new Uri("./Sounds/Bass/bass-Moerasbas 1.wav", UriKind.Relative));
-            Sounds[15] = new MediaPlayer(); Sounds[15].Open(new Uri("./Sounds/Bass/bass-Zandwezen 1.wav", UriKind.Relative));
-            Sounds[16] = new MediaPlayer(); Sounds[16].Open(new Uri("./Sounds/Bass/bass-Magmabass 1.wav", UriKind.Relative));
-            Sounds[17] = new MediaPlayer(); Sounds[17].Open(new Uri("./Sounds/Pad/Pad-Fefifish.wav", UriKind.Relative));
-            Sounds[18] = new MediaPlayer(); Sounds[18].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
-            Sounds[19] = new MediaPlayer(); Sounds[19].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
+            Random rnd = new Random();
 
-            Sounds[20] = new MediaPlayer(); Sounds[20].Open(new Uri("./Sounds/Bass/Bass-Atmozzz.wav", UriKind.Relative));
-            Sounds[21] = new MediaPlayer(); Sounds[21].Open(new Uri("./Sounds/Bass/Bass-Beanbass.wav", UriKind.Relative));
-            Sounds[22] = new MediaPlayer(); Sounds[22].Open(new Uri("./Sounds/Bass/Bass-Knispy.wav", UriKind.Relative));
-            Sounds[23] = new MediaPlayer(); Sounds[23].Open(new Uri("./Sounds/Bass/bass-Lavabass 1.wav", UriKind.Relative));
-            Sounds[24] = new MediaPlayer(); Sounds[24].Open(new Uri("./Sounds/Bass/bass-Moerasbas 1.wav", UriKind.Relative));
-
+            for (int i = 0; i < 25; i++)
+            {
+                Sounds[i] = new MediaPlayer(); Sounds[i].Open(new Uri(soundFiles[rnd.Next(0,soundFiles.Length)], UriKind.Relative));
+            }
 
             int counter = 0;
-
             for (int y = 0; y < 5; y++)
             {
                 for (int x = 0; x < 5; x++)
