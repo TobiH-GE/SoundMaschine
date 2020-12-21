@@ -22,7 +22,7 @@ namespace SoundMaschine
         {
             InitializeComponent();
 
-            Grid contentGrid = Tracks;
+            Grid contentGrid = TracksGrid;
             ColumnDefinition tempColumn;
 
             for (int i = 0; i < 5; i++)
@@ -54,7 +54,7 @@ namespace SoundMaschine
             {
                 MainWindow wnd = (MainWindow)Application.Current.MainWindow;
 
-                ((TrackButton)sender).Content = wnd.selectedSoundID;
+                ((TrackButton)sender).Content = (char)(wnd.selectedSoundID + 65);
                 ((TrackButton)sender).sound = wnd.Sounds[wnd.selectedSoundID];
             }
             else
@@ -97,24 +97,6 @@ namespace SoundMaschine
         private async Task wait(int ms)
         {
             await Task.Delay(ms);
-        }
-
-        public int getPadID(object sender) //TODO: optimize
-        {
-            switch (((Button)sender).Name)
-            {
-                case "btn0": { return 0; }
-                case "btn1": { return 1; }
-                case "btn2": { return 2; }
-                case "btn3": { return 3; }
-                case "btn4": { return 4; }
-                case "btn5": { return 5; }
-                case "btn6": { return 6; }
-                case "btn7": { return 7; }
-                case "btn8": { return 8; }
-                default:
-                    return -1;
-            }
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)

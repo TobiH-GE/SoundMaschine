@@ -21,8 +21,8 @@ namespace SoundMaschine
 /// </summary>
     public partial class MainWindow : Window
     {
-        public MediaPlayer[] Sounds = new MediaPlayer[9];
-        Pad[] Pads = new Pad[9];
+        public MediaPlayer[] Sounds = new MediaPlayer[25];
+        List<Pad> Pads = new List<Pad>();
         pgdTrack pgdTrack = new pgdTrack();
 
         public int selectedSoundID = 0;
@@ -40,36 +40,55 @@ namespace SoundMaschine
             Sounds[6] = new MediaPlayer(); Sounds[6].Open(new Uri("./Sounds/Bass/bass-Magmabass 1.wav", UriKind.Relative));
             Sounds[7] = new MediaPlayer(); Sounds[7].Open(new Uri("./Sounds/Pad/Pad-Fefifish.wav", UriKind.Relative));
             Sounds[8] = new MediaPlayer(); Sounds[8].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
+            Sounds[9] = new MediaPlayer(); Sounds[9].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
 
-            Pads[0] = new Pad(btn0, 0, Sounds[0]);
-            Pads[1] = new Pad(btn1, 1, Sounds[1]);
-            Pads[2] = new Pad(btn2, 2, Sounds[2]);
-            Pads[3] = new Pad(btn3, 3, Sounds[3]);
-            Pads[4] = new Pad(btn4, 4, Sounds[4]);
-            Pads[5] = new Pad(btn5, 5, Sounds[5]);
-            Pads[6] = new Pad(btn6, 6, Sounds[6]);
-            Pads[7] = new Pad(btn7, 7, Sounds[7]);
-            Pads[8] = new Pad(btn8, 8, Sounds[8]);
+            Sounds[10] = new MediaPlayer(); Sounds[10].Open(new Uri("./Sounds/Bass/Bass-Atmozzz.wav", UriKind.Relative));
+            Sounds[11] = new MediaPlayer(); Sounds[11].Open(new Uri("./Sounds/Bass/Bass-Beanbass.wav", UriKind.Relative));
+            Sounds[12] = new MediaPlayer(); Sounds[12].Open(new Uri("./Sounds/Bass/Bass-Knispy.wav", UriKind.Relative));
+            Sounds[13] = new MediaPlayer(); Sounds[13].Open(new Uri("./Sounds/Bass/bass-Lavabass 1.wav", UriKind.Relative));
+            Sounds[14] = new MediaPlayer(); Sounds[14].Open(new Uri("./Sounds/Bass/bass-Moerasbas 1.wav", UriKind.Relative));
+            Sounds[15] = new MediaPlayer(); Sounds[15].Open(new Uri("./Sounds/Bass/bass-Zandwezen 1.wav", UriKind.Relative));
+            Sounds[16] = new MediaPlayer(); Sounds[16].Open(new Uri("./Sounds/Bass/bass-Magmabass 1.wav", UriKind.Relative));
+            Sounds[17] = new MediaPlayer(); Sounds[17].Open(new Uri("./Sounds/Pad/Pad-Fefifish.wav", UriKind.Relative));
+            Sounds[18] = new MediaPlayer(); Sounds[18].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
+            Sounds[19] = new MediaPlayer(); Sounds[19].Open(new Uri("./Sounds/Pad/pad-FuzzyMosquito 1.wav", UriKind.Relative));
+
+            Sounds[20] = new MediaPlayer(); Sounds[20].Open(new Uri("./Sounds/Bass/Bass-Atmozzz.wav", UriKind.Relative));
+            Sounds[21] = new MediaPlayer(); Sounds[21].Open(new Uri("./Sounds/Bass/Bass-Beanbass.wav", UriKind.Relative));
+            Sounds[22] = new MediaPlayer(); Sounds[22].Open(new Uri("./Sounds/Bass/Bass-Knispy.wav", UriKind.Relative));
+            Sounds[23] = new MediaPlayer(); Sounds[23].Open(new Uri("./Sounds/Bass/bass-Lavabass 1.wav", UriKind.Relative));
+            Sounds[24] = new MediaPlayer(); Sounds[24].Open(new Uri("./Sounds/Bass/bass-Moerasbas 1.wav", UriKind.Relative));
+
+
+            int counter = 0;
+
+            for (int y = 0; y < 5; y++)
+            {
+                for (int x = 0; x < 5; x++)
+                {
+                    Pad tempButton = new Pad(new Button(), counter, Sounds[counter]);
+
+                    tempButton.button.Name = "btn_" + counter.ToString();
+                    tempButton.button.Style = FindResource("PadButtons") as Style;
+                    PadsGrid.Children.Add(tempButton.button);
+                    Pads.Add(tempButton);
+                    Grid.SetColumn(tempButton.button, x);
+                    Grid.SetRow(tempButton.button, y);
+
+                    counter++;
+                }
+            }
 
             fraTrack.Content = pgdTrack;
         }
 
-        public int getPadID(object sender) //TODO: optimize
+        public int getPadID(object sender)
         {
-            switch (((Button)sender).Name)
-            {
-                case "btn0": { return 0;}
-                case "btn1": { return 1;}
-                case "btn2": { return 2;}
-                case "btn3": { return 3;}
-                case "btn4": { return 4;}
-                case "btn5": { return 5;}
-                case "btn6": { return 6;}
-                case "btn7": { return 7;}
-                case "btn8": { return 8;}
-                default:
-                    return -1;
-            }
+            int tempNumber = 0;
+
+            Int32.TryParse((sender as Button).Name.Substring(4), out tempNumber);
+
+            return tempNumber;
         }
         private void btn_Click(object sender, RoutedEventArgs e)
         {
@@ -104,7 +123,7 @@ namespace SoundMaschine
             this.id = id;
             this.sound = sound;
 
-            button.Content = id;
+            button.Content = (char)(id + 65);
             sound.MediaEnded += (o, e) => button.Background = Brushes.LightGray;
         }
     }
