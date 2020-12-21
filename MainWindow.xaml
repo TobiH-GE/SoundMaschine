@@ -5,22 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoundMaschine"
         mc:Ignorable="d"
-        Title="SoundMaschine by TobiH - use left mouseb on pad play/add and right mouseb on pad to stop sound" Height="800" Width="1280">
-    <Window.Resources>
-        <Style x:Key="TrackButtons" TargetType="Button">
-            <Setter Property="Padding" Value="2,2,2,2" />
-            <Setter Property="Height" Value="20" />
-        </Style>
-    </Window.Resources>
+        Title="SoundMaschine by TobiH - use left mouseb on pad play/add and right mouseb on pad to stop sound" Height="700" Width="1280">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="500"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <TextBox Name="bpm" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="5,5,5,5" Text="140" TextWrapping="Wrap" Width="85"/>
+        </StackPanel>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -42,6 +39,8 @@
             <Button Name="btn7" Width="100" Height="100" Grid.Column="1" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
             <Button Name="btn8" Width="100" Height="100" Grid.Column="2" Grid.Row="2" Content="Sound 1" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="center" Click="btn_Click" MouseRightButtonUp="btn_MouseRightButtonUp"/>
         </Grid>
-        <Frame Name="fraTrack" Content="" Grid.Column="1" Grid.Row="1"/>
+        <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
+            <Frame Name="fraTrack" Content=""/>
+        </ScrollViewer>
     </Grid>
 </Window>

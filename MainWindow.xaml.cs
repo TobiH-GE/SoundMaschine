@@ -21,16 +21,11 @@ namespace SoundMaschine
 /// </summary>
     public partial class MainWindow : Window
     {
-        MediaPlayer[] Sounds = new MediaPlayer[9];
+        public MediaPlayer[] Sounds = new MediaPlayer[9];
         Pad[] Pads = new Pad[9];
         pgdTrack pgdTrack = new pgdTrack();
 
-        public List<List<MediaPlayer>> Tracks = new List<List<MediaPlayer>>();
-
-        public List<MediaPlayer> getTrack()
-        {
-            return Tracks[0];
-        }
+        public int selectedSoundID = 0;
 
         public MainWindow()
         {
@@ -57,10 +52,9 @@ namespace SoundMaschine
             Pads[8] = new Pad(btn8, 8, Sounds[8]);
 
             fraTrack.Content = pgdTrack;
-            
         }
 
-        private int getPadID(object sender) //TODO: optimize
+        public int getPadID(object sender) //TODO: optimize
         {
             switch (((Button)sender).Name)
             {
@@ -79,19 +73,17 @@ namespace SoundMaschine
         }
         private void btn_Click(object sender, RoutedEventArgs e)
         {
-            Pads[getPadID(sender)].button.Background = Brushes.Green;
+            Pads[selectedSoundID].button.BorderBrush = Brushes.Black;
+            Pads[selectedSoundID].button.BorderThickness = new Thickness(1);
+
+            Pads[getPadID(sender)].button.BorderBrush = Brushes.Green;
+            Pads[getPadID(sender)].button.BorderThickness = new Thickness(3);
+
+            Pads[getPadID(sender)].button.Background = Brushes.Blue;
             Pads[getPadID(sender)].sound.Position = TimeSpan.Zero;
             Pads[getPadID(sender)].sound.Play();
 
-            //pgdTrack.Track.Add(new TrackButton(0, 1000, Sounds[getPadID(sender)]));
-
-            var tempButton = new TrackButton(0, 1000, Sounds[getPadID(sender)]);
-            tempButton.Style = FindResource("TrackButtons") as Style;
-            tempButton.Content = getPadID(sender);
-            Grid contentGrid = pgdTrack.Content as Grid;
-            Grid.SetColumn(tempButton, contentGrid.Children.Count);
-            contentGrid.Children.Add(tempButton);
-            pgdTrack.Track.Add(tempButton);
+            selectedSoundID = getPadID(sender);
         }
 
         private void btn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
