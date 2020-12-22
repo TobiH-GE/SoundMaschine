@@ -12,6 +12,14 @@
             <Setter Property="Height" Value="50" />
             <EventSetter Event="Click" Handler="btn_Click"/>
             <EventSetter Event="MouseRightButtonUp" Handler="btn_MouseRightButtonUp"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#ccc" Offset="0"/>
+                        <GradientStop Color="#555" Offset="1"/>
+                    </LinearGradientBrush>
+                    </Setter.Value>
+            </Setter>
         </Style>
     </Window.Resources>
     <Grid>

@@ -77,6 +77,8 @@ namespace SoundMaschine
             Pads[getPadID(sender)].Background = Brushes.Blue;
             Pads[getPadID(sender)].sound.Position = TimeSpan.Zero;
             Pads[getPadID(sender)].sound.Play();
+            changeColor(Pads[getPadID(sender)]);
+
 
             selectedSoundID = getPadID(sender);
         }
@@ -84,7 +86,37 @@ namespace SoundMaschine
         private void btn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             Pads[getPadID(sender)].sound.Stop();
-            Pads[getPadID(sender)].Background = Brushes.LightGray;
+            Pads[getPadID(sender)].doGradientEffect();
+        }
+
+        async void changeColor(PadButton pad)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                await wait(100);
+                pad.Background = doGradientEffect(i * 0.05);
+            }
+        }
+        private async Task wait(int ms)
+        {
+            await Task.Delay(ms);
+        }
+
+        private LinearGradientBrush doGradientEffect(double value = 0.75)
+        {
+            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+            myLinearGradientBrush.StartPoint = new Point(0, 0);
+            myLinearGradientBrush.EndPoint = new Point(1, 1);
+            myLinearGradientBrush.GradientStops.Add(
+                new GradientStop(Colors.Yellow, 0.0));
+            myLinearGradientBrush.GradientStops.Add(
+                new GradientStop(Colors.Red, 0.25));
+            myLinearGradientBrush.GradientStops.Add(
+                new GradientStop(Colors.Blue, value));
+            myLinearGradientBrush.GradientStops.Add(
+                new GradientStop(Colors.LimeGreen, 1.0));
+
+            return myLinearGradientBrush;
         }
     }
 }
