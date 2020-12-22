@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 
 namespace SoundMaschine
 {
-    public partial class pgdTrack : Page
+    public partial class TracksPage : Page
     {
         public List<List<TrackButton>> Track = new List<List<TrackButton>>();
         bool isPlaying = false;
-        public pgdTrack()
+        public TracksPage()
         {
             InitializeComponent();
 

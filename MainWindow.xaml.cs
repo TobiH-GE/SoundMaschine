@@ -24,7 +24,7 @@ namespace SoundMaschine
     {
         public MediaPlayer[] Sounds = new MediaPlayer[25];
         List<PadButton> Pads = new List<PadButton>();
-        pgdTrack pgdTrack = new pgdTrack();
+        TracksPage pgdTrack = new TracksPage();
 
         public int selectedSoundID = 0;
 
