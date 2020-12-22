@@ -23,29 +23,23 @@ namespace SoundMaschine
             InitializeComponent();
 
             Grid contentGrid = TracksGrid;
-            ColumnDefinition tempColumn;
 
-            for (int i = 0; i < 5; i++)
+            for (int y = 0; y < 5; y++)
             {
                 Track.Add(new List<TrackButton>());
 
-                for (int j = 0; j < 1000; j++)
+                for (int x = 0; x < 1000; x++)
                 {
-                    tempColumn = new ColumnDefinition();
-                    contentGrid.ColumnDefinitions.Add(tempColumn);
+                    contentGrid.ColumnDefinitions.Add(new ColumnDefinition());
 
-                    var tempButton = new TrackButton(0, 0, new MediaPlayer());
-                    tempButton.Style = FindResource("TrackButtons") as Style;
-                    contentGrid.Children.Add(tempButton);
-                    Track[i].Add(tempButton);
-                    Grid.SetColumn(tempButton, j);
-                    Grid.SetRow(tempButton, i);
+                    var temp = new TrackButton(0, 0, new MediaPlayer());
+                    temp.Style = FindResource("TrackButtons") as Style;
+                    contentGrid.Children.Add(temp);
+                    Track[y].Add(temp);
+                    Grid.SetColumn(temp, x);
+                    Grid.SetRow(temp, y);
                 }
             }
-        }
-        public void AddSoundButton(int id, int delay, MediaPlayer sound)
-        {
-            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -67,7 +61,6 @@ namespace SoundMaschine
 
         async void PlayTrack()
         {
-            //aTextbox.Text = $"sounds: {aTrack.Count}";
             isPlaying = true;
             int bpm;
 

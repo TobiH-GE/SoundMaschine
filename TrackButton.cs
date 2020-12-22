@@ -14,7 +14,6 @@ namespace SoundMaschine
 
         public TrackButton(int id, int delay, MediaPlayer sound)
         {
-            //Style = FindResource("TrackButtons") as Style;
             this.id = id;
             this.delay = delay;
             this.sound = sound;

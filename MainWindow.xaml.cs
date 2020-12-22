@@ -17,13 +17,13 @@ using System.Windows.Shapes;
 
 namespace SoundMaschine
 {
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
     public partial class MainWindow : Window
     {
         public MediaPlayer[] Sounds = new MediaPlayer[25];
-        List<Pad> Pads = new List<Pad>();
+        List<PadButton> Pads = new List<PadButton>();
         pgdTrack pgdTrack = new pgdTrack();
 
         public int selectedSoundID = 0;
@@ -46,14 +46,13 @@ namespace SoundMaschine
             {
                 for (int x = 0; x < 5; x++)
                 {
-                    Pad tempButton = new Pad(new Button(), counter, Sounds[counter]);
+                    PadButton temp = new PadButton(counter, Sounds[counter]);
 
-                    tempButton.button.Name = "btn_" + counter.ToString();
-                    tempButton.button.Style = FindResource("PadButtons") as Style;
-                    PadsGrid.Children.Add(tempButton.button);
-                    Pads.Add(tempButton);
-                    Grid.SetColumn(tempButton.button, x);
-                    Grid.SetRow(tempButton.button, y);
+                    temp.Style = FindResource("PadButtons") as Style;
+                    PadsGrid.Children.Add(temp);
+                    Pads.Add(temp);
+                    Grid.SetColumn(temp, x);
+                    Grid.SetRow(temp, y);
 
                     counter++;
                 }
@@ -72,13 +71,13 @@ namespace SoundMaschine
         }
         private void btn_Click(object sender, RoutedEventArgs e)
         {
-            Pads[selectedSoundID].button.BorderBrush = Brushes.Black;
-            Pads[selectedSoundID].button.BorderThickness = new Thickness(1);
+            Pads[selectedSoundID].BorderBrush = Brushes.Black;
+            Pads[selectedSoundID].BorderThickness = new Thickness(1);
 
-            Pads[getPadID(sender)].button.BorderBrush = Brushes.Green;
-            Pads[getPadID(sender)].button.BorderThickness = new Thickness(3);
+            Pads[getPadID(sender)].BorderBrush = Brushes.Green;
+            Pads[getPadID(sender)].BorderThickness = new Thickness(3);
 
-            Pads[getPadID(sender)].button.Background = Brushes.Blue;
+            Pads[getPadID(sender)].Background = Brushes.Blue;
             Pads[getPadID(sender)].sound.Position = TimeSpan.Zero;
             Pads[getPadID(sender)].sound.Play();
 
@@ -88,23 +87,7 @@ namespace SoundMaschine
         private void btn_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             Pads[getPadID(sender)].sound.Stop();
-            Pads[getPadID(sender)].button.Background = Brushes.LightGray;
-        }
-    }
-
-    public class Pad
-    {
-        public Button button;
-        public int id;
-        public MediaPlayer sound;
-        public Pad (Button button, int id, MediaPlayer sound)
-        {
-            this.button = button;
-            this.id = id;
-            this.sound = sound;
-
-            button.Content = (char)(id + 65);
-            sound.MediaEnded += (o, e) => button.Background = Brushes.LightGray;
+            Pads[getPadID(sender)].Background = Brushes.LightGray;
         }
     }
 }
