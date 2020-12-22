@@ -24,7 +24,6 @@ namespace SoundMaschine
     {
         public MediaPlayer[] Sounds = new MediaPlayer[25];
         List<PadButton> Pads = new List<PadButton>();
-        TracksPage pgdTrack = new TracksPage();
 
         public int selectedSoundID = 0;
 
@@ -57,8 +56,6 @@ namespace SoundMaschine
                     counter++;
                 }
             }
-
-            fraTrack.Content = pgdTrack;
         }
 
         public int getPadID(object sender)

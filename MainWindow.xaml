@@ -43,7 +43,7 @@
             </Grid.ColumnDefinitions>
         </Grid>
         <ScrollViewer Grid.Column="1" Grid.Row="1" HorizontalScrollBarVisibility="Visible" CanContentScroll="True">
-            <Frame Name="fraTrack" Content=""/>
+            <Frame Source="TracksPage.xaml"/>
         </ScrollViewer>
     </Grid>
 </Window>
